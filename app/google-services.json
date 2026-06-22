@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196742503724",
+    "project_id": "weather-info-helper",
+    "storage_bucket": "weather-info-helper.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196742503724:android:934e14d132c778bd70e089",
+        "android_client_info": {
+          "package_name": "com.vladislavgrom.weatherinfohelper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJAX94OxE2qOmddSn1r084QSklu4z0aOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
