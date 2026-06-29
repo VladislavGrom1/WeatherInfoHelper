@@ -19,6 +19,8 @@ composeBom = "2026.02.01"
 ktor = "2.3.11"
 moshiKotlin = "1.15.2"
 moshiKotlinCodegen = "1.15.2"
+playServicesLocation = "21.4.0"
+playServicesMaps = "20.0.0"
 retrofit = "3.0.0"
 symbolProcessingApi = "2.3.9"
 
@@ -48,6 +50,8 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "symbolProcessingApi" }
 

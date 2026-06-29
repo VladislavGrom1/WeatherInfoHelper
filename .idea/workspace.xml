@@ -10,81 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9feaf492-4f72-452c-a981-48f8482778e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deviceManager.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/App.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/common/api/WeatherApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/common/di/WeatherApiModule.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/common/di/WeatherRepositoryModule.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/data/weather/data_source/WeatherRemoteDataSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/data/weather/mappers/WeatherMappers.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/data/weather/model/WeatherDataDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/data/weather/model/WeatherDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/data/weather/repository/WeatherRepositoryImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/domain/weather/model/WeatherData.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/domain/weather/model/WeatherInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/domain/weather/model/WeatherType.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/domain/weather/repository/WeatherRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/domain/weather/use_case/GetWeatherDataUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/WeatherScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/WeatherState.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/WeatherViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_cloudy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_drop.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_heavysnow.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_pressure.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_rainshower.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_rainy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_rainythunder.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_snowy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_snowyrainy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sunny.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sunnycloudy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sunnyrainy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_thunder.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_very_cloudy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_wind.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_windy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/9.4.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/81f68qcwozcojgz70lykg8f2i/candidates.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/configuration-cache.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/.globals.work.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/.strings.work.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/_app.work.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/buildfingerprint.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/classloaderscopes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/entry.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/projectfingerprint.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/d7d7d337-1252-488c-92be-29b928e28761/work.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/weatherinfohelper/ExampleInstrumentedTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/vladislavgrom/weatherinfohelper/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/weatherinfohelper/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/weatherinfohelper/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/theme/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/weatherinfohelper/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/theme/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/weatherinfohelper/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/theme/Type.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/weatherinfohelper/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/vladislavgrom/weatherinfohelper/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/configuration-cache/81f68qcwozcojgz70lykg8f2i/a9cqkxasmxz4kyhhfp87rgpwy/configuration-cache-report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/weather/WeatherViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vladislavgrom/weatherinfohelper/presentation/weather/WeatherViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +53,9 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3F7eafZom7srhthAzCWZpKJlcnb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>

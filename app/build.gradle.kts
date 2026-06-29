@@ -69,6 +69,10 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.logging)
 
+    // Location
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
