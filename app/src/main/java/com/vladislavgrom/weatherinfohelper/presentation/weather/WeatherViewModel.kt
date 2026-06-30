@@ -2,7 +2,9 @@ package com.vladislavgrom.weatherinfohelper.presentation.weather
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vladislavgrom.weatherinfohelper.domain.location.use_case.GetAddressLocationUseCase
 import com.vladislavgrom.weatherinfohelper.domain.location.use_case.GetCurrentLocationUseCase
+import com.vladislavgrom.weatherinfohelper.domain.util.Resource
 import com.vladislavgrom.weatherinfohelper.domain.weather.use_case.GetWeatherDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val getWeatherDataUseCase: GetWeatherDataUseCase,
-    private val getCurrentLocationUseCase: GetCurrentLocationUseCase
+    private val getCurrentLocationUseCase: GetCurrentLocationUseCase,
+    private val getAddressLocationUseCase: GetAddressLocationUseCase
 ) : ViewModel() {
 
     private val _weatherState = MutableStateFlow<WeatherState>(
@@ -23,7 +26,11 @@ class WeatherViewModel @Inject constructor(
     val weatherState: StateFlow<WeatherState> = _weatherState.asStateFlow()
 
     fun onPermissionResult(granted: Boolean) {
-        getWeatherData(granted)
+        if (granted) {
+            getWeatherData()
+        } else {
+            _weatherState.value = WeatherState.Error("Для работы приложения необходимо предоставить доступ к местоположению.")
+        }
     }
 
     fun showPermissionRequest() {
@@ -31,69 +38,46 @@ class WeatherViewModel @Inject constructor(
     }
 
     fun onPermissionResultAlreadyGranted() {
-        getWeatherData(true)
+        getWeatherData()
     }
 
-    private fun getWeatherData(isUseGPS: Boolean) {
+    fun getWeatherData() {
         _weatherState.value = WeatherState.DataLoading
         viewModelScope.launch {
             try {
-                var latitude = 48.7138
-                var longitude = 44.4976
-                if(isUseGPS) {
-                    val location = getCurrentLocationUseCase.call()
-                    latitude = location?.latitude ?: latitude
-                    longitude = location?.longitude ?: longitude
+                val location = getCurrentLocationUseCase.call()
+                
+                if (location == null) {
+                    _weatherState.value = WeatherState.Error("Не удалось получить доступ к геопозиции. Убедитесь, что GPS включен и разрешения даны.")
+                    return@launch
                 }
 
-                val weather = getWeatherDataUseCase.call(
+                val latitude = location.latitude
+                val longitude = location.longitude
+
+                val addressLocation = getAddressLocationUseCase.call(latitude, longitude)
+
+                val result = getWeatherDataUseCase.call(
                     latitude = latitude,
                     longitude = longitude
                 )
 
-                _weatherState.value = WeatherState.DataLoaded(
-                    weatherData = weather,
-                    latitude = latitude,
-                    longitude = longitude
-                )
+                when (result) {
+                    is Resource.Success -> {
+                        _weatherState.value = WeatherState.DataLoaded(
+                            weatherData = result.data,
+                            latitude = latitude,
+                            longitude = longitude,
+                            addressLocation = addressLocation
+                        )
+                    }
+                    is Resource.Error -> {
+                        _weatherState.value = WeatherState.Error(result.message ?: "Неизвестная ошибка")
+                    }
+                }
             } catch (e: Exception) {
-                _weatherState.value = WeatherState.Initial
+                _weatherState.value = WeatherState.Error(e.localizedMessage ?: "Ошибка при загрузке данных")
             }
         }
     }
 }
-
-//    private val _searchQuery = mutableStateOf("")
-//    private var _responseText = mutableStateOf("")
-//
-//    val searchQuery: String by _searchQuery
-//    var responseText: String by _responseText
-//
-//    private val model = GenerativeModel(
-//        modelName = "gemini-3.5-flash",
-//        apiKey = "API KEY",
-//        generationConfig = generationConfig {
-//            temperature = 0.7f
-//        }
-//    )
-//
-//    fun updateSearchQuery(query: String) {
-//        _searchQuery.value = query
-//    }
-//
-//    suspend fun sendRequest(text: String): String {
-//        if (text.isBlank()) return ""
-//
-//        responseText = "Загрузка..."
-//
-//        return try {
-//            val response = model.generateContent(text)
-//            val result = response.text ?: "Пустой ответ от модели"
-//            responseText = result
-//            result
-//        } catch (e: Exception) {
-//            val errorMessage = "Ошибка: ${e.localizedMessage ?: "Неизвестная ошибка"}"
-//            responseText = errorMessage
-//            errorMessage
-//        }
-//    }

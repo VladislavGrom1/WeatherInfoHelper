@@ -6,9 +6,13 @@ sealed interface WeatherState{
     data object Initial: WeatherState
     data object RequestingPermissions: WeatherState
     data object DataLoading: WeatherState
+    data class Error(
+        val error: String
+    ) : WeatherState
     data class DataLoaded(
-        val weatherData: WeatherInfo,
+        val weatherData: WeatherInfo?,
         val latitude: Double?,
         val longitude: Double?,
+        val addressLocation: String
     ) : WeatherState
 }
