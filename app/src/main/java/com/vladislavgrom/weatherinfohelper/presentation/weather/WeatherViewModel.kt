@@ -52,9 +52,13 @@ class WeatherViewModel @Inject constructor(
                     return@launch
                 }
 
-                val latitude = location.latitude
-                val longitude = location.longitude
+                //val latitude = location.latitude
+                //val longitude = location.longitude
 
+                val latitude = 48.7138
+                val longitude = 44.4976
+
+                // Волгоград: Ш(48.7138) Д(44.4976)
                 val addressLocation = getAddressLocationUseCase.call(latitude, longitude)
 
                 val result = getWeatherDataUseCase.call(

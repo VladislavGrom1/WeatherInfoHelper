@@ -30,6 +30,7 @@ import com.vladislavgrom.weatherinfohelper.presentation.theme.BlueBackground
 import com.vladislavgrom.weatherinfohelper.presentation.theme.WeatherInfoHelperTheme
 import com.vladislavgrom.weatherinfohelper.presentation.theme.montserrat
 import com.vladislavgrom.weatherinfohelper.presentation.weather.widgets.CurrentWeatherCard
+import com.vladislavgrom.weatherinfohelper.presentation.weather.widgets.WeatherNextDays
 import com.vladislavgrom.weatherinfohelper.presentation.weather.widgets.WeatherPerHour
 
 
@@ -75,6 +76,8 @@ fun WeatherContent(
                 CurrentWeatherCard(state = weatherState)
                 Spacer(Modifier.height(20.dp))
                 WeatherPerHour(state = weatherState)
+                Spacer(Modifier.height(20.dp))
+                WeatherNextDays(state = weatherState)
             }
         }
     }
