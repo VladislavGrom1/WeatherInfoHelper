@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.vladislavgrom.weatherinfohelper.presentation.map.MapScreen
 import com.vladislavgrom.weatherinfohelper.presentation.theme.BlueBackground
 import com.vladislavgrom.weatherinfohelper.presentation.theme.WeatherInfoHelperTheme
 import com.vladislavgrom.weatherinfohelper.presentation.theme.montserrat
@@ -35,7 +36,10 @@ import com.vladislavgrom.weatherinfohelper.presentation.weather.widgets.WeatherP
 
 
 @Composable
-fun WeatherScreen(weatherViewModel: WeatherViewModel = hiltViewModel()) {
+fun WeatherScreen(
+    weatherViewModel: WeatherViewModel = hiltViewModel(),
+    onOpenMap: () -> Unit
+) {
     val weatherState by weatherViewModel.weatherState.collectAsState()
 
     when (val currentState = weatherState) {
@@ -49,7 +53,10 @@ fun WeatherScreen(weatherViewModel: WeatherViewModel = hiltViewModel()) {
         }
 
         is WeatherState.DataLoaded -> {
-            WeatherContent(currentState)
+            WeatherContent(
+                weatherState = currentState,
+                onOpenMap = onOpenMap
+            )
         }
 
         is WeatherState.Error -> {
@@ -63,7 +70,8 @@ fun WeatherScreen(weatherViewModel: WeatherViewModel = hiltViewModel()) {
 
 @Composable
 fun WeatherContent(
-    weatherState: WeatherState.DataLoaded
+    weatherState: WeatherState.DataLoaded,
+    onOpenMap: () -> Unit
 ) {
     // Волгоград: Ш(48.7138) Д(44.4976)
     WeatherInfoHelperTheme {
@@ -74,6 +82,10 @@ fun WeatherContent(
                     .padding(innerPadding)
             ) {
                 CurrentWeatherCard(state = weatherState)
+                Spacer(Modifier.height(20.dp))
+                Button(onClick = onOpenMap) {
+                    Text("Открыть карту")
+                }
                 Spacer(Modifier.height(20.dp))
                 WeatherPerHour(state = weatherState)
                 Spacer(Modifier.height(20.dp))

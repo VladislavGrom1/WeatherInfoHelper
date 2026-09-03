@@ -6,13 +6,11 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+val mapkitApiKey: String by rootProject.extra
+
 android {
     namespace = "com.vladislavgrom.weatherinfohelper"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.vladislavgrom.weatherinfohelper"
@@ -20,8 +18,8 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "MAPKIT_API_KEY", "\"${mapkitApiKey}\"")
     }
 
     buildTypes {
@@ -37,11 +35,13 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+
 }
 
 dependencies {
-    implementation(platform(libs.androidx.compose.bom))
+    // Core
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
@@ -49,9 +49,10 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.ui)
-
-    implementation(libs.generativeai)
+    implementation(libs.material.icons.core)
+    implementation(libs.androidx.navigation.compose)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -82,6 +83,10 @@ dependencies {
     implementation(libs.compass.geolocation)
     implementation(libs.compass.geolocation.mobile)
 
+    // YandexMapKit
+    implementation(libs.maps.mobile)
+
+    // Util
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

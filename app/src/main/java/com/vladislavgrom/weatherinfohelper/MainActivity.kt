@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import com.vladislavgrom.weatherinfohelper.common.permission.PermissionChecker
 import com.vladislavgrom.weatherinfohelper.common.permission.PermissionLauncher
+import com.vladislavgrom.weatherinfohelper.presentation.navigation.AppNavHost
 import com.vladislavgrom.weatherinfohelper.presentation.weather.WeatherScreen
 import com.vladislavgrom.weatherinfohelper.presentation.weather.WeatherViewModel
+import com.yandex.mapkit.MapKitFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -29,7 +31,7 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            WeatherScreen(weatherViewModel)
+            AppNavHost(weatherViewModel = weatherViewModel)
         }
 
         if (permissionChecker.hasLocationPermission()) {
