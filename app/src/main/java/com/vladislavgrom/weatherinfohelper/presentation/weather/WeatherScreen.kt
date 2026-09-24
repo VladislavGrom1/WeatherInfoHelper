@@ -1,5 +1,6 @@
 package com.vladislavgrom.weatherinfohelper.presentation.weather
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.vladislavgrom.weatherinfohelper.presentation.map.MapScreen
 import com.vladislavgrom.weatherinfohelper.presentation.theme.BlueBackground
+import com.vladislavgrom.weatherinfohelper.presentation.theme.PrimaryTheme
 import com.vladislavgrom.weatherinfohelper.presentation.theme.WeatherInfoHelperTheme
 import com.vladislavgrom.weatherinfohelper.presentation.theme.montserrat
 import com.vladislavgrom.weatherinfohelper.presentation.weather.widgets.CurrentWeatherCard
@@ -75,17 +77,16 @@ fun WeatherContent(
 ) {
     // Волгоград: Ш(48.7138) Д(44.4976)
     WeatherInfoHelperTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            containerColor = PrimaryTheme
+        ) { innerPadding ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(innerPadding)
             ) {
-                CurrentWeatherCard(state = weatherState)
-                Spacer(Modifier.height(20.dp))
-                Button(onClick = onOpenMap) {
-                    Text("Открыть карту")
-                }
+                CurrentWeatherCard(state = weatherState, onOpenMap = onOpenMap)
                 Spacer(Modifier.height(20.dp))
                 WeatherPerHour(state = weatherState)
                 Spacer(Modifier.height(20.dp))
@@ -98,7 +99,10 @@ fun WeatherContent(
 @Composable
 fun WeatherLoading(message: String){
     WeatherInfoHelperTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            containerColor = PrimaryTheme
+        ) { innerPadding ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,

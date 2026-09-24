@@ -2,6 +2,7 @@ package com.vladislavgrom.weatherinfohelper.presentation.map
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vladislavgrom.weatherinfohelper.domain.location.use_case.GetAddressLocationUseCase
 import com.vladislavgrom.weatherinfohelper.domain.map.model.MapPlaceInfo
 import com.vladislavgrom.weatherinfohelper.domain.map.use_case.SearchPlacesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,16 +18,40 @@ data class MapUiState(
     val longitude: Double = 37.618423,
     val zoom: Float = 14f,
     val markers: List<MapPlaceInfo> = emptyList(),
-    val isSearching: Boolean = false
+    val isSearching: Boolean = false,
+    val selectedLatitude: Double? = null,
+    val selectedLongitude: Double? = null,
+    val selectedAddress: String? = null,
+    val isResolvingAddress: Boolean = false
 )
 
 @HiltViewModel
 class MapViewModel @Inject constructor(
-    private val searchPlacesUseCase: SearchPlacesUseCase
+    private val searchPlacesUseCase: SearchPlacesUseCase,
+    private val getAddressLocationUseCase: GetAddressLocationUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(MapUiState())
     val state: StateFlow<MapUiState> = _state.asStateFlow()
+
+    fun onMapTap(latitude: Double, longitude: Double) {
+        _state.update {
+            it.copy(
+                selectedLatitude = latitude,
+                selectedLongitude = longitude,
+                selectedAddress = null,
+                isResolvingAddress = true
+            )
+        }
+        viewModelScope.launch {
+            val address = try {
+                getAddressLocationUseCase.call(latitude, longitude)
+            } catch (e: Exception) {
+                null
+            }
+            _state.update { it.copy(selectedAddress = address, isResolvingAddress = false) }
+        }
+    }
 
     fun onSearch(query: String) {
         if (query.isBlank()) return
@@ -40,7 +65,11 @@ class MapViewModel @Inject constructor(
                         markers = places,
                         isSearching = false,
                         latitude = firstPlace?.latitude ?: it.latitude,
-                        longitude = firstPlace?.longitude ?: it.longitude
+                        longitude = firstPlace?.longitude ?: it.longitude,
+                        selectedLatitude = firstPlace?.latitude ?: it.selectedLatitude,
+                        selectedLongitude = firstPlace?.longitude ?: it.selectedLongitude,
+                        selectedAddress = firstPlace?.name ?: it.selectedAddress,
+                        isResolvingAddress = false
                     )
                 }
             } catch (e: Exception) {

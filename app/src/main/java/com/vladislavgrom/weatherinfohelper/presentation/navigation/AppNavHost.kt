@@ -22,7 +22,12 @@ fun AppNavHost(weatherViewModel: WeatherViewModel) {
             )
         }
         composable(ROUTE_MAP) {
-            MapScreen()
+            MapScreen(
+                onLocationSelected = { latitude, longitude ->
+                    weatherViewModel.getWeatherData(latitude = latitude, longitude = longitude)
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

@@ -41,37 +41,41 @@ class WeatherViewModel @Inject constructor(
         getWeatherData()
     }
 
-    fun getWeatherData() {
+    fun getWeatherData(latitude: Double? = null, longitude: Double? = null) {
         _weatherState.value = WeatherState.DataLoading
         viewModelScope.launch {
             try {
-                val location = getCurrentLocationUseCase.call()
-                
-                if (location == null) {
-                    _weatherState.value = WeatherState.Error("Не удалось получить доступ к геопозиции. Убедитесь, что GPS включен и разрешения даны.")
-                    return@launch
+                val resolvedLatitude: Double
+                val resolvedLongitude: Double
+
+                if (latitude != null && longitude != null) {
+                    resolvedLatitude = latitude
+                    resolvedLongitude = longitude
+                } else {
+                    val location = getCurrentLocationUseCase.call()
+
+                    if (location == null) {
+                        _weatherState.value = WeatherState.Error("Не удалось получить доступ к геопозиции. Убедитесь, что GPS включен и разрешения даны.")
+                        return@launch
+                    }
+
+                    resolvedLatitude = location.latitude
+                    resolvedLongitude = location.longitude
                 }
 
-                //val latitude = location.latitude
-                //val longitude = location.longitude
-
-                val latitude = 48.7138
-                val longitude = 44.4976
-
-                // Волгоград: Ш(48.7138) Д(44.4976)
-                val addressLocation = getAddressLocationUseCase.call(latitude, longitude)
+                val addressLocation = getAddressLocationUseCase.call(resolvedLatitude, resolvedLongitude)
 
                 val result = getWeatherDataUseCase.call(
-                    latitude = latitude,
-                    longitude = longitude
+                    latitude = resolvedLatitude,
+                    longitude = resolvedLongitude
                 )
 
                 when (result) {
                     is Resource.Success -> {
                         _weatherState.value = WeatherState.DataLoaded(
                             weatherData = result.data,
-                            latitude = latitude,
-                            longitude = longitude,
+                            latitude = resolvedLatitude,
+                            longitude = resolvedLongitude,
                             addressLocation = addressLocation
                         )
                     }

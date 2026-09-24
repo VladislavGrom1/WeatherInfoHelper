@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vladislavgrom.weatherinfohelper.domain.weather.model.WeatherData
 import com.vladislavgrom.weatherinfohelper.presentation.theme.BlueBackground
+import com.vladislavgrom.weatherinfohelper.presentation.theme.PrimaryTheme
 import com.vladislavgrom.weatherinfohelper.presentation.theme.montserrat
 import com.vladislavgrom.weatherinfohelper.presentation.weather.WeatherState
 import kotlinx.coroutines.launch
@@ -107,7 +108,7 @@ private fun WeatherHourCard(
     isHourPassed: Boolean
 ) {
     val alpha = if (isHourPassed) 0.2f else 1f
-    val containerColor = if (isCurrentHour) BlueBackground else Color.White
+    val containerColor = if (isCurrentHour) BlueBackground else PrimaryTheme
     Card(
         colors = CardDefaults.cardColors(
             containerColor = containerColor
@@ -120,7 +121,7 @@ private fun WeatherHourCard(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
-                .height(140.dp)
+                .height(160.dp)
                 .padding(PaddingValues(vertical = 20.dp))
                 .fillMaxWidth()
         ) {

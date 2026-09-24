@@ -7,9 +7,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +36,8 @@ import java.util.Locale
 @Composable
 fun CurrentWeatherCard(
     state: WeatherState.DataLoaded,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onOpenMap: () -> Unit = {}
 ) {
     state.weatherData?.currentWeatherData?.let { weatherData ->
         Card(
@@ -52,20 +60,32 @@ fun CurrentWeatherCard(
                 val dateFormatter = DateTimeFormatter.ofPattern("d MMMM", Locale.forLanguageTag("ru"))
                 Spacer(modifier = Modifier.height(16.dp))
                 Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
+                    IconButton(
+                        onClick = onOpenMap,
+                        modifier = Modifier.size(28.dp),
+                        colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)
+                    ) {
+                        Icon(
+                            Icons.Default.LocationOn,
+                            contentDescription = "Выбрать локацию на карте"
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         state.addressLocation,
                         style = Typography.bodyMedium,
                     )
-                    Text(
-                        "${LocalDateTime.now().format(dateFormatter)}",
-                        style = Typography.bodyMedium,
-                    )
                 }
-
                 Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    "${LocalDateTime.now().format(dateFormatter)}",
+                    style = Typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.height(5.dp))
                 Text(
                     "${weatherData.temperatureC} °C",
                     style = Typography.titleMedium
